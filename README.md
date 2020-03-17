@@ -62,7 +62,7 @@ These are related resources below
 [root@bastion ~]# git clone https://github.com/SammZhu/ServiceMeshHomework.git
 ```
 
-2. Then go into the working directory and execute the Ansible playbook script to install the environment. The entire installation will take about an hour.
+2. Then go into the working directory and execute the Ansible playbook script to run tasks.
 
 ```shell
 [root@bastion ~]# cd ServiceMeshHomework
