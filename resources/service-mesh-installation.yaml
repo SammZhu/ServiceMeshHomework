@@ -1,0 +1,294 @@
+apiVersion: maistra.io/v1
+kind: ServiceMeshControlPlane
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"maistra.io/v1","kind":"ServiceMeshControlPlane","metadata":{"annotations":{},"name":"service-mesh-installation","namespace":"bookretail-istio-system"},"spec":{"istio":{"gateways":{"istio-egressgateway":{"autoscaleEnabled":false},"istio-ingressgateway":{"autoscaleEnabled":false,"ior_enabled":false}},"global":{"disablePolicyChecks":false,"mtls":false,"proxy":{"resources":{"limits":{"cpu":"500m","memory":"128Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}}},"kiali":{"dashboard":{"passphrase":"redhat","user":"admin"}},"mixer":{"policy":{"autoscaleEnabled":false},"telemetry":{"autoscaleEnabled":false,"resources":{"limits":{"cpu":"500m","memory":"4G"},"requests":{"cpu":"100m","memory":"1G"}}}},"pilot":{"autoscaleEnabled":false,"traceSampling":100},"tracing":{"enabled":true}},"threeScale":{"enabled":false}}}
+  creationTimestamp: "2020-03-17T01:42:17Z"
+  finalizers:
+  - maistra.io/istio-operator
+  generation: 4
+  name: service-mesh-installation
+  namespace: bookretail-istio-system
+  resourceVersion: "1057584"
+  selfLink: /apis/maistra.io/v1/namespaces/bookretail-istio-system/servicemeshcontrolplanes/service-mesh-installation
+  uid: ea7e248e-0503-4902-9fad-4ad051d6d514
+spec:
+  istio:
+    gateways:
+      istio-egressgateway:
+        autoscaleEnabled: false
+      istio-ingressgateway:
+        autoscaleEnabled: false
+        ior_enabled: false
+    global:
+      disablePolicyChecks: false
+      mtls: false
+      proxy:
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+    kiali:
+      dashboard:
+        passphrase: redhat
+        user: admin
+    mixer:
+      policy:
+        autoscaleEnabled: false
+      telemetry:
+        autoscaleEnabled: false
+        resources:
+          limits:
+            cpu: 500m
+            memory: 4G
+          requests:
+            cpu: 100m
+            memory: 1G
+    pilot:
+      autoscaleEnabled: false
+      traceSampling: 100
+    sidecarInjectorWebhook:
+      rewriteAppHTTPProbe: true
+    tracing:
+      enabled: true
+  threeScale:
+    enabled: false
+status:
+  components:
+  - conditions:
+    - lastTransitionTime: "2020-03-17T14:44:26Z"
+      status: "False"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:45:04Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: kiali
+  - conditions:
+    - lastTransitionTime: "2020-03-17T14:44:26Z"
+      status: "False"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:43:31Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: mixer
+  - conditions:
+    - lastTransitionTime: "2020-03-17T17:10:04Z"
+      message: Successfully reconciled
+      reason: ReconcileSuccessful
+      status: "True"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:42:34Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: istio
+  - conditions:
+    - lastTransitionTime: "2020-03-17T14:44:26Z"
+      status: "False"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:44:42Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: sidecarInjectorWebhook
+  - conditions:
+    - lastTransitionTime: "2020-03-17T14:44:26Z"
+      status: "False"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:44:53Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: grafana
+  - conditions:
+    - lastTransitionTime: "2020-03-17T14:44:26Z"
+      status: "False"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:43:34Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: pilot
+  - conditions:
+    - lastTransitionTime: "2020-03-17T17:10:07Z"
+      message: Successfully reconciled
+      reason: ReconcileSuccessful
+      status: "True"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:42:38Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: security
+  - conditions:
+    - lastTransitionTime: "2020-03-17T14:44:26Z"
+      status: "False"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:43:07Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: tracing
+  - conditions:
+    - lastTransitionTime: "2020-03-17T14:44:26Z"
+      message: no matches for kind "Route" in version "route.openshift.io/v1"
+      reason: ReconcileError
+      status: "False"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:42:44Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: prometheus
+  - conditions:
+    - lastTransitionTime: "2020-03-17T14:44:26Z"
+      status: "False"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:43:12Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: galley
+  - conditions:
+    - lastTransitionTime: "2020-03-17T14:44:26Z"
+      status: "False"
+      type: Reconciled
+    - lastTransitionTime: "2020-03-17T01:44:07Z"
+      message: Successfully installed all mesh components
+      reason: InstallSuccessful
+      status: "True"
+      type: Installed
+    resource: gateways
+  conditions:
+  - lastTransitionTime: "2020-03-17T01:45:04Z"
+    message: Successfully installed all mesh components
+    reason: InstallSuccessful
+    status: "True"
+    type: Installed
+  - lastTransitionTime: "2020-03-17T17:10:10Z"
+    message: Updating mesh from generation 1 to generation 4
+    reason: SpecUpdated
+    status: "False"
+    type: Reconciled
+  - lastTransitionTime: "2020-03-17T14:44:26Z"
+    message: Updating mesh from generation 1 to generation 4
+    reason: SpecUpdated
+    status: "False"
+    type: Ready
+  lastAppliedConfiguration:
+    istio:
+      galley:
+        image: galley-rhel8
+      gateways:
+        istio-egressgateway:
+          autoscaleEnabled: false
+          enabled: true
+        istio-ingressgateway:
+          autoscaleEnabled: false
+          enabled: true
+          ior_enabled: false
+          type: ClusterIP
+      global:
+        disablePolicyChecks: false
+        hub: registry.redhat.io/openshift-service-mesh
+        mtls: false
+        oauthproxy:
+          hub: registry.redhat.io/openshift4
+          image: ose-oauth-proxy
+          imagePullPolicy: IfNotPresent
+          tag: 4.1
+        operatorNamespace: istio-operator
+        proxy:
+          autoInject: disabled
+          dnsRefreshRate: 300s
+          image: proxyv2-rhel8
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+        proxy_init:
+          image: proxy-init-rhel7
+        tag: 1.0.0
+      grafana:
+        enabled: true
+        image: grafana-rhel8
+        ingress:
+          enabled: true
+        service:
+          annotations:
+            service.alpha.openshift.io/serving-cert-secret-name: grafana-tls
+      istio_cni:
+        enabled: true
+      kiali:
+        dashboard:
+          passphrase: redhat
+          user: admin
+          viewOnlyMode: false
+        enabled: true
+        ingress:
+          enabled: true
+      mixer:
+        env:
+          GODEBUG: null
+        image: mixer-rhel8
+        policy:
+          autoscaleEnabled: false
+        telemetry:
+          autoscaleEnabled: false
+          resources:
+            limits:
+              cpu: 500m
+              memory: 4G
+            requests:
+              cpu: 100m
+              memory: 1G
+      pilot:
+        autoscaleEnabled: false
+        env:
+          GODEBUG: null
+        image: pilot-rhel8
+        traceSampling: 100
+      prometheus:
+        image: prometheus-rhel8
+        ingress:
+          enabled: true
+        service:
+          annotations:
+            service.alpha.openshift.io/serving-cert-secret-name: prometheus-tls
+      security:
+        image: citadel-rhel8
+      sidecarInjectorWebhook:
+        enableNamespacesByDefault: true
+        image: sidecar-injector-rhel8
+        rewriteAppHTTPProbe: "true"
+      tracing:
+        enabled: true
+        ingress:
+          enabled: true
+        jaeger:
+          template: all-in-one
+    template: default
+    threeScale:
+      enabled: false
+      hub: registry.redhat.io/openshift-service-mesh
+      tag: 1.0.0
+  observedGeneration: 1

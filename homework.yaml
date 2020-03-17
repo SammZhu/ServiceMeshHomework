@@ -1,0 +1,44 @@
+---
+- name: Install a ServiceMeshMemberRoll
+  hosts: localhost
+  tasks:
+    - name: login as admin
+      shell: oc login -u admin -p "{{ passwd }}"
+    - name: add bookinfo as a member
+      shell: oc apply -n bookretail-istio-system -f ./resources/service-mesh-roll.yaml
+    - name: grant edit role to user1
+      shell: oc adm policy add-role-to-user edit user1 -n bookretail-istio-system
+
+- name: New bookinfo application
+  hosts: localhost
+  tasks:
+    - name: login as user1
+      shell: oc login -u user1 -p "{{ passwd }}"
+    - name: create bookinfo application
+      shell: oc apply -n bookinfo -f ./resources/bookinfo.yaml
+    - name: create virtualservice
+      shell: oc apply -n bookinfo -f ./resources/bookinfo-virtualservice.yaml
+    - name: create destination rule
+      shell: oc apply -n bookinfo -f ./resources/destination-rule-all-mtls.yaml
+    - name: create gateway
+      shell: oc apply -n bookinfo -f ./resources/bookinfo-service-gateway.yml
+    - name: create service policy
+      shell: oc apply -n bookinfo -f ./resources/bookinfo-service-policy.yml
+    - name: show pods status
+      shell: oc get pods -n bookinfo
+
+- name: MTLS setup
+  hosts: localhost
+  tasks:
+    - name: login as admin
+      shell: oc login -u admin
+    - name: rewrite probe
+      shell: oc apply -n bookretail-istio-system -f ./resources/service-mesh.yaml 
+    - name: create new key and crt
+      shell: openssl req -x509 -config ./mtls/cert.cfg -extensions req_ext -nodes -days 730 -newkey rsa:2048 -sha256 -keyout tls.key -out tls.crt
+    - name: remove old secret
+      shell: oc delete secret istio-ingressgateway-certs -n bookretail-istio-system
+    - name: create new secret
+      shell: oc create secret tls istio-ingressgateway-certs --cert tls.crt --key tls.key -n bookretail-istio-system
+    - name: refresh ingressgateway
+      shell: oc delete pod $(oc get pod -l app=istio-ingressgateway -o jsonpath={.items[0].metadata.name} -n bookretail-istio-system) -n bookretail-istio-system
