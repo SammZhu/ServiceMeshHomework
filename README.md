@@ -38,13 +38,19 @@ Registry console URL is https://console-openshift-console.apps.cluster-$GUID.$GU
 These are related resources below
 
 ```shell
-bookinfo-service-gateway.yml
-bookinfo-service-policy.yml
-bookinfo-virtualservice.yaml
-bookinfo.yaml
-cert.cfg
-destination-rule-all-mtls.yaml
-homework.yaml
+├── homework.yaml
+├── hosts
+├── mtls
+│   └── cert.cfg
+└── resources
+    ├── bookinfo-service-gateway.yml
+    ├── bookinfo-service-policy.yml
+    ├── bookinfo-virtualservice.yaml
+    ├── bookinfo.yaml
+    ├── destination-rule-all-mtls.yaml
+    ├── service-mesh-installation.yaml
+    ├── service-mesh-roll.yaml
+    └── service-mesh.yaml
 ```
 
 ## **Installation**
@@ -56,9 +62,9 @@ homework.yaml
 [root@bastion ~]# git clone https://github.com/SammZhu/ServiceMeshHomework.git
 ```
 
-2. Then go into the working directory and execute the Ansible playbook script to install the environment. The entire installation will take about an hour.
+2. Then go into the working directory and execute the Ansible playbook script to run tasks.
 
 ```shell
 [root@bastion ~]# cd ServiceMeshHomework
-[root@bastion ~]# ansible-playbook ./homework.yaml
+[root@bastion ~]# ansible-playbook homework.yaml -e passwd=r3dh4t1! -i hosts
 ```
